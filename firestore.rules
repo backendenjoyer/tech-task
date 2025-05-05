@@ -1,0 +1,15 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow authenticated users to read/write to recordings
+    match /recordings/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Allow authenticated users to read/write to deduplications
+    match /deduplications/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

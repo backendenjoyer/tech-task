@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"jsx": "react-jsx",
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleResolution": "node",
+		"baseUrl": ".",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noImplicitAny": false,
+		"paths": {
+			"*": [
+				"node_modules/*"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"**/*.ts",
+		"**/*.tsx"
+	]
+}
