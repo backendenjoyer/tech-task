@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../App';
-import { auth } from '../firebaseInit'; // Import auth from firebaseInit
+import { onAuthStateChanged } from '../utils/auth'; // Import from authUtils
 
 type HomeScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'Main'>;
@@ -15,7 +15,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = onAuthStateChanged((user) => {
       setLoading(false);
       if (user) {
         console.log('User is signed in:', user.email);
@@ -23,7 +23,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
       } else {
         console.log('No user signed in');
         // Navigate to SignIn screen
-        navigation.navigate('SignIn'); // Assumes a SignIn screen exists
+        navigation.navigate('SignIn');
       }
     });
 

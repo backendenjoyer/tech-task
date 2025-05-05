@@ -24,8 +24,7 @@ import {
   fetchRecordingHistory,
   processAudioForTranscription,
 } from '../utils/audioProcessor';
-import { auth } from '../firebaseInit'; // Import auth from firebaseInit
-import { signOut } from 'firebase/auth';
+import { onAuthStateChanged, signOut, getCurrentUser } from '../utils/auth';
 import { Recording } from '../utils/types';
 
 // Navigation types
@@ -65,7 +64,7 @@ declare global {
 }
 
 const HistoryScreen: React.FC<HistoryScreenProps> = ({ navigation }) => {
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState(getCurrentUser());
   const [recordings, setRecordings] = useState<Recording[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -73,14 +72,14 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ navigation }) => {
 
   // Monitor auth state
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    const unsubscribe = onAuthStateChanged((currentUser: any) => {
       setUser(currentUser);
       if (currentUser) {
         loadRecordings();
       } else {
         setRecordings([]);
         setLoading(false);
-        navigation.navigate('SignIn'); // Redirect to SignIn if not authenticated
+        navigation.navigate('SignIn' as any);
       }
     });
     return () => unsubscribe();
@@ -180,9 +179,9 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ navigation }) => {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOut();
       Alert.alert('Success', 'Signed out successfully');
-      navigation.navigate('SignIn');
+      navigation.navigate('SignIn' as any);
     } catch (err: any) {
       Alert.alert('Error', `Failed to sign out: ${err.message}`);
     }
@@ -315,7 +314,7 @@ const HistoryScreen: React.FC<HistoryScreenProps> = ({ navigation }) => {
           <View style={styles.authContainer}>
             <Button
               title="Sign In"
-              onPress={() => navigation.navigate('SignIn')}
+              onPress={() => navigation.navigate('SignIn' as any)}
             />
           </View>
         )}

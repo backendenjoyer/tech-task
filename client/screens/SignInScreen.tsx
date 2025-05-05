@@ -10,8 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
-import { auth } from '../firebaseInit';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signIn } from '../utils/auth';
 
 type SignInScreenProps = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'SignIn'>;
@@ -28,17 +27,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       return;
     }
 
-    if (!auth) {
-      console.error('Auth is undefined');
-      Alert.alert('Error', 'Authentication service is not initialized');
-      return;
-    }
-
     setLoading(true);
     try {
-      console.log('Attempting to sign in with:', email);
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log('Sign-in successful');
+        console.log(password)
+      await signIn(email, password);
       navigation.navigate('Main');
     } catch (err: any) {
       console.error('Sign-in error:', err);
