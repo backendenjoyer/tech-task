@@ -6,7 +6,7 @@
 
 # Exit on error
 set -e
-API_KEY="AIzaSyASsaw34Y5e8XF3gKnnJyqii5fqbT_YlZQ"
+API_KEY="xxx"
 # Step 1: Check for required tools
 echo "Killing previous emulators"
 npx kill-port 4000 9199 5001 8080 9099 9199 8085 >/dev/null 2>&1
