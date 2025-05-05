@@ -4,7 +4,7 @@
 set -e
 
 # Configuration
-API_KEY="AIzaSyASsaw34Y5e8XF3gKnnJyqii5fqbT_YlZQ"
+API_KEY="xx"
 PROJECT_ID="qualtirdemofromleo"
 API_BASE="http://localhost:5001/$PROJECT_ID/us-central1"
 TEST_FILE="test.mp3" # Update with path to a test audio file (e.g., ./test.mp3)
@@ -16,7 +16,7 @@ command -v md5sum >/dev/null 2>&1 || command -v md5 >/dev/null 2>&1 || { echo "m
 command -v split >/dev/null 2>&1 || { echo "split is required but not installed. Aborting."; exit 1; }
 command -v wc >/dev/null 2>&1 || { echo "wc is required but not installed. Aborting."; exit 1; }
 
-# Step 5: Create a test user
+# Step 5: Create a test user (specify random creds)
 echo "Creating test user..."
 USER_RESPONSE=$(curl -s -X POST \
   http://localhost:9099/identitytoolkit.googleapis.com/v1/accounts:signUp?key=$API_KEY \

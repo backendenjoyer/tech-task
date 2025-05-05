@@ -23,7 +23,7 @@
         "UIBackgroundModes": ["audio"]
       },
       "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.mycorp.myapp"
+      "bundleIdentifier": "com.backendenjoyer.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -38,7 +38,7 @@
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS"
       ],
-      "package": "com.mycorp.myapp"
+      "package": "com.backendenjoyer.app"
     },
     "web": {
       "favicon": "./assets/icon.png"
